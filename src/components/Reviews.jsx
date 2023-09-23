@@ -1,33 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
 import { fetchMovieReviews } from './api';
+import styles from './Reviews.module.css';
 
 function Reviews() {
   const { movieId } = useParams();
-  const { data, isLoading, isError, error } = useQuery(['movieReviews', movieId], () =>
-    fetchMovieReviews(movieId)
-  );
+  const [data, setTrendingMovies] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  }, [data]);
+    const fetchMovies = async (movieId) => {
+      try {
+        const movies = await fetchMovieReviews(movieId);
+        setTrendingMovies(movies);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching trending movies:', error);
+      }
+    };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+    fetchMovies(movieId);
+  }, [movieId]);
 
-  if (isError) {
-    return <div>Error: {error.message}</div>;
+  if (loading) {
+    return <div className={styles.loading}>Loading...</div>;
   }
 
   return (
-    <div>
-      <h2>Огляди</h2>
-      <ul>
+    <div className={styles.reviews}>
+      <h2 className={styles.reviewsHeader}>Огляди</h2>
+      <ul className={styles.reviewsList}>
         {data.results.map((review) => (
-          <li key={review.id}>
-            <h3>{review.author}</h3>
-            <p>{review.content}</p>
+          <li key={review.id} className={styles.reviewItem}>
+            <h3 className={styles.reviewAuthor}>{review.author}</h3>
+            <p className={styles.reviewContent}>{review.content}</p>
           </li>
         ))}
       </ul>

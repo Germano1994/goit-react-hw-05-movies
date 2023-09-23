@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Routes, useParams, Link, Route } from 'react-router-dom';
 import { fetchTrendingMoviesDetails } from './api';
+import Cast from './Cast';
+import Reviews from './Reviews';
+import styles from './MovieDetails.module.css';
 
 function MovieDetails() {
   const { movieId } = useParams();
@@ -8,41 +11,48 @@ function MovieDetails() {
   const [trendingMovies, setTrendingMovies] = useState({});
   const [loading, setLoading] = useState(true);
 
-  
-
   useEffect(() => {
     const fetchMovies = async (movieId) => {
-    try {
-      const movies = await fetchTrendingMoviesDetails(movieId);
-      console.log(movies)
-      setTrendingMovies(movies);
-      setLoading(false);
-    } catch (error) {
-      console.error('Error fetching trending movies:', error);
-    }
-  }
-  
-  fetchMovies(movieId);
+      try {
+        const movies = await fetchTrendingMoviesDetails(movieId);
+        setTrendingMovies(movies);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching trending movies:', error);
+      }
+    };
 
+    fetchMovies(movieId);
   }, [movieId]);
-  
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className={styles.loading}>Loading...</div>;
   }
-
-  
-console.log(trendingMovies);
 
   return (
     <div>
-      <img src={"https://image.tmdb.org/t/p/w500"+trendingMovies.poster_path} alt="" />
-      <h2>Деталі фільму</h2>
-      <h3>{trendingMovies.title}</h3>
+    <div className={styles.movieDetails}>
+      <img src={`https://image.tmdb.org/t/p/w500${trendingMovies.poster_path}`} alt="" />
+      <h2>{trendingMovies.title}</h2>
       <p>{trendingMovies.overview}</p>
-      {}
+    </div>
+    <div>
+      <Link to="cast">
+        Cast
+    </Link>
+    <Link to="reviews">
+        Reviews
+    </Link>
+    </div>
+    <Routes>
+                <Route path="cast" element={<Cast />} />
+                <Route path="reviews" element={<Reviews />} />
+            </Routes>
+            
+          
     </div>
   );
 }
 
 export default MovieDetails;
+

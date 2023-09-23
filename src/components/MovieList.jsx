@@ -1,17 +1,42 @@
 import { useLocation } from 'react-router-dom';
+import React from 'react';
+import styles from './MovieList.module.css';
+
+const getRandomColor = () => {
+  const letters = '0123456789ABCDEF';
+  let color = '#';
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
 
 export const MoviesList = ({ movies }) => {
   const location = useLocation();
 
+  const handleMouseEnter = (event) => {
+    event.target.style.color = getRandomColor();
+  };
+
+  const handleMouseLeave = (event) => {
+    event.target.style.color = ''; 
+  };
+
   return (
-    <List>
-      {movies.map(movie => (
-        <li key={movie.id}>
-          <Link to={`/movies/${movie.id}`} state={location}>
-            {movie.title ? movie.title : movie.name}
+    <ul className={styles.movieList}>
+      {movies.map((movie) => (
+        <li key={movie.id} className={styles.movieItem}>
+          <Link
+            to={`/movies/${movie.id}`}
+            state={location}
+            className={styles.movieLink}
+            onMouseEnter={handleMouseEnter} 
+            onMouseLeave={handleMouseLeave} 
+          >
+            <strong>{movie.title ? movie.title : movie.name}</strong>
           </Link>
         </li>
       ))}
-    </List>
+    </ul>
   );
 };

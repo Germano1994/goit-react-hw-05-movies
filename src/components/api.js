@@ -30,3 +30,48 @@ export const fetchTrendingMoviesDetails = async (id) => {
       throw error;
     }
   };
+
+
+  export const fetchMovieReviews = async (id) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/movie/${id}/reviews?language=en-US&page=1`, {
+        params: {
+          api_key: API_KEY,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+
+  export const fetchMovieCast = async (id) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/movie/${id}/credits?language=en-US`, {
+        params: {
+          api_key: API_KEY,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+
+
+  export const fetchSearchMovies = async (search) => {
+    try {
+      const response = await axios.get(`${BASE_URL}/search/movie?include_adult=false&language=en-US&page=1&query=${search}`, {
+        params: {
+          api_key: API_KEY,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+

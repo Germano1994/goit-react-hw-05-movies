@@ -1,0 +1,29 @@
+.movieList {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; 
+  }
+  
+  .movieItem {
+    margin: 0.5rem;
+    flex-basis: calc(33.33% - 1rem); 
+    background-color: #f0f0f0;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  
+    &:hover {
+      transform: translateY(-5px); 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  .movieLink {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  

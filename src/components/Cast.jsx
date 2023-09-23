@@ -1,31 +1,42 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { fetchMovieCredits } from './api';
+import { fetchMovieCast } from './api';
+import styles from './Cast.module.css';
 
 function Cast() {
   const { movieId } = useParams();
-  const { data, isLoading, isError, error } = useQuery(['movieCredits', movieId], () =>
-    fetchMovieCredits(movieId)
-  );
+
+  const [data, setTrendingMovies] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-  }, [data]);
+    const fetchMovies = async (movieId) => {
+      try {
+        const movies = await fetchMovieCast(movieId);
+        setTrendingMovies(movies);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching trending movies:', error);
+      }
+    };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+    fetchMovies(movieId);
+  }, [movieId]);
+
+  if (loading) {
+    return <div className={styles.loading}>Loading...</div>;
   }
-
-  if (isError) {
-    return <div>Error: {error.message}</div>;
-  }
-
+  
   return (
-    <div>
+    <div className={styles.cast}>
       <h2>Акторський склад</h2>
-      <ul>
+      <ul className={styles.castList}>
         {data.cast.map((actor) => (
-          <li key={actor.id}>{actor.name}</li>
+
+          <li key={actor.id} className={styles.castItem}>
+            {actor.name}
+            <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt="" />
+          </li>
         ))}
       </ul>
     </div>

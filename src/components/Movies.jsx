@@ -1,32 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from 'react-query';
-import { searchMovies } from './api';
+import { fetchSearchMovies } from './api';
 
 function Movies() {
-  const [query, setQuery] = useState('');
-  const { data, isLoading, isError, error } = useQuery(['searchMovies', query], () =>
-    searchMovies(query)
-  );
+  const [search, setSearch] = useState('');
+  const [data, setTrendingMovies] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const searchMovies = async (search) => {
+      try {
+        const movies = await fetchSearchMovies(search);
+        setTrendingMovies(movies.results);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching trending movies:', error);
+      }
+    };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-  };
+    searchMovies(search);
+  }, [search]);
+
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+  
+  
+  }
+
 
   return (
     <div>
       <h2>Пошук фільмів</h2>
+      <Link to={`/`}>Home</Link>
       <form onSubmit={handleSearch}>
         <input
           type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          value={search}
+          onChange={(event) => setSearch(event.target.value)}
           placeholder="Введіть назву фільму"
         />
         <button type="submit">Пошук</button>
       </form>
       {isLoading && <p>Loading...</p>}
-      {isError && <p>Error: {error.message}</p>}
       {data && (
         <ul>
           {data.map((movie) => (

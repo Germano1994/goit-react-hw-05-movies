@@ -1,0 +1,24 @@
+.cast {
+    margin: 1rem;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .error {
+    color: red;
+  }
+  
+  .castList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .castItem {
+    margin: 0.5rem 0;
+  }
+  

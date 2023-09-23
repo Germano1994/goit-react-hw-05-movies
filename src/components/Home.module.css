@@ -1,0 +1,20 @@
+.home {
+    margin: 1rem;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .movieList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .movieItem {
+    margin: 1rem 0;
+  }
+  

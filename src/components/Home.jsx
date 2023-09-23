@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchTrendingMovies } from './api';
+import styles from './Home.module.css';
 
 const Home = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
   const [loading, setLoading] = useState(true);
+
 
   useEffect(() => {
     const fetchMovies = async () => {
@@ -20,15 +22,18 @@ const Home = () => {
     fetchMovies();
   }, []);
 
+  
+
   return (
-    <div>
+    <div className={styles.home}>
       <h2>Найпопулярніші фільми на сьогодні</h2>
+      <Link to={`/movies`}>Movies</Link>
       {loading ? (
-        <p>Loading...</p>
+        <p className={styles.loading}>Loading...</p>
       ) : (
-        <ul>
+        <ul className={styles.movieList}>
           {trendingMovies.map((movie) => (
-            <li key={movie.id}>
+            <li key={movie.id} className={styles.movieItem}>
               <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
             </li>
           ))}
