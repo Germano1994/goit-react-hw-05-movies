@@ -7,7 +7,6 @@ import styles from './MovieDetails.module.css';
 
 function MovieDetails() {
   const { movieId } = useParams();
-  const navigate = useNavigate();
 
   const [trendingMovies, setTrendingMovies] = useState({});
   const [loading, setLoading] = useState(true);
