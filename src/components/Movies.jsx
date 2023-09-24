@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchSearchMovies } from './api';
+import styles from './Movies.module.css';
 
 function Movies() {
   const [search, setSearch] = useState('');
   const [data, setTrendingMovies] = useState([]);
   const [isLoading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const searchMovies = async (search) => {
       try {
@@ -21,16 +22,13 @@ function Movies() {
     searchMovies(search);
   }, [search]);
 
-
   const handleSearch = (event) => {
     event.preventDefault();
-  
-  
+    // Ваша логіка для обробки пошуку
   }
 
-
   return (
-    <div>
+    <div className={styles.moviesContainer}>
       <h2>Пошук фільмів</h2>
       <Link to={`/`}>Home</Link>
       <form onSubmit={handleSearch}>
@@ -42,12 +40,14 @@ function Movies() {
         />
         <button type="submit">Пошук</button>
       </form>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <p className={styles.loading}>Loading...</p>}
       {data && (
         <ul>
           {data.map((movie) => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+              <Link to={`/movies/${movie.id}`} className={styles.movieLink}>
+                {movie.title}
+              </Link>
             </li>
           ))}
         </ul>

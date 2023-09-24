@@ -1,3 +1,5 @@
+/* Home.module.css */
+
 .home {
   margin: 1rem;
   padding: 20px;
@@ -11,29 +13,35 @@
   height: 100vh;
 }
 
+/* Застосувати відступ віднизу до списку */
 .movieList {
   list-style-type: none;
   padding: 0;
+  margin-bottom: 20px; /* Відступ віднизу 20px */
 }
 
 .movieItem {
+  /* Змінити колір тексту при наведенні на оранжевий */
+  transition: color 0.3s;
   margin-bottom: 20px;
 }
 
-.StyledHome {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 20px;
 
-  h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
+.movieItem:hover {
+  color: orange;
+}
 
-  a {
-    text-decoration: none;
-    color: inherit; 
-  }
+
+.movieItem a:active {
+  color: orange;
+}
+
+
+.movieList h1 {
+  text-transform: uppercase;
+}
+
+.movieItem a {
+  text-decoration: none !important;
+  color: inherit; 
 }

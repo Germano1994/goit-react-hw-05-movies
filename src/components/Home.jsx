@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <Link to={`/movies`}>Movies</Link>
-      <h2>Trending today</h2>
+      <h1>Trending today</h1>
       {loading ? (
         <p className={styles.loading}>Loading...</p>
       ) : (

@@ -1,5 +1,3 @@
-/* MovieDetails.module.css */
-
 .movieDetails {
   margin: 1rem;
   display: flex;
@@ -22,13 +20,13 @@
 
 .moviesDetails {
   display: flex;
-  flex-wrap: wrap; /* Додано flex-wrap для обгортання елементів на маленьких екранах */
+  flex-wrap: wrap; 
   align-items: center;
-  position: relative; /* Додано позицію для розміщення кнопки Back */
+  position: relative; 
 }
 
 .backButton,
-.castButton { /* Додано стилі для кнопки Back та Cast */
+.castButton { 
   background-color: #0077cc;
   color: white;
   padding: 10px 20px;
@@ -42,7 +40,7 @@
 }
 
 .backButton:hover,
-.castButton:hover { /* Додано стилі для наведення миші на кнопки Back та Cast */
+.castButton:hover { 
   background-color: #005fbf;
 }
 
