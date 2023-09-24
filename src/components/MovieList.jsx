@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, NavLink } from 'react-router-dom';
 import React from 'react';
 import styles from './MovieList.module.css'; 
 
