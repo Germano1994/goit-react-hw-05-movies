@@ -24,21 +24,21 @@ function Movies() {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    // Ваша логіка для обробки пошуку
+    
   }
 
   return (
     <div className={styles.moviesContainer}>
-      <h2>Пошук фільмів</h2>
+      <h2>Movie search</h2>
       <Link to={`/`}>Home</Link>
       <form onSubmit={handleSearch}>
         <input
           type="text"
           value={search}
           onChange={(event) => setSearch(event.target.value)}
-          placeholder="Введіть назву фільму"
+          placeholder="Search movies"
         />
-        <button type="submit">Пошук</button>
+        <button type="submit">Search</button>
       </form>
       {isLoading && <p className={styles.loading}>Loading...</p>}
       {data && (

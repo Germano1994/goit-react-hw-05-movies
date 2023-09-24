@@ -29,7 +29,7 @@ function Cast() {
 
   return (
     <div className={styles.cast}>
-      <h2>Акторський склад</h2>
+      <h2>Cast</h2>
       <ul className={styles.castList}>
         {data.cast.map((actor) => (
           <li key={actor.id} className={styles.castItem}>

@@ -28,7 +28,7 @@ function Reviews() {
 
   return (
     <div className={styles.reviews}>
-      <h2 className={styles.reviewsHeader}>Огляди</h2>
+      <h2 className={styles.reviewsHeader}>Reviews</h2>
       <ul className={styles.reviewsList}>
         {data.results.length > 0 ? (
           data.results.map((review) => (

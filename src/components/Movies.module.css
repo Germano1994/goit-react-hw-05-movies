@@ -1,5 +1,3 @@
-/* Movies.module.css */
-
 .moviesContainer {
     display: flex;
     flex-direction: column;
@@ -15,11 +13,14 @@
   
   .moviesContainer a {
     text-decoration: none;
-    color: #0077cc;
+    color: black;
     transition: color 0.3s;
+    font-weight: 500;
+    border-radius: 4px;
   
     &:hover {
-      color: orange;
+      color: white;
+      background-color: orangered;
     }
   }
   
@@ -28,6 +29,7 @@
   }
   
   .moviesContainer input[type="text"] {
+    margin-top: 10px;
     padding: 10px;
     width: 100%;
     border: 1px solid #ccc;
