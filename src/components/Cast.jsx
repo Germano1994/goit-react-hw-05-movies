@@ -26,16 +26,20 @@ function Cast() {
   if (loading) {
     return <div className={styles.loading}>Loading...</div>;
   }
-  
+
   return (
     <div className={styles.cast}>
       <h2>Акторський склад</h2>
       <ul className={styles.castList}>
         {data.cast.map((actor) => (
-
           <li key={actor.id} className={styles.castItem}>
-            {actor.name}
-            <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt="" />
+            {actor.profile_path ? (
+              <img src={`https://image.tmdb.org/t/p/w200${actor.profile_path}`} alt="" />
+            ) : (
+              <p>Sorry, image not available</p>
+            )}
+            <p className={styles.actorName}>{actor.name}</p>
+            <p className={styles.character}>Character: {actor.character}</p>
           </li>
         ))}
       </ul>

@@ -1,12 +1,31 @@
-.cast {
-    margin: 1rem;
+  .cast {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 16px;
   }
+  
+  
+  img {
+    display: block;
+    height: auto;
+  }
+
+  .actorName {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .character {
+    text-align: center;
+    font-style: italic;
+  }
+  
   
   .loading {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
   }
   
   .error {
@@ -14,11 +33,27 @@
   }
   
   .castList {
-    list-style-type: none;
-    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    border-radius: 4px;
+    list-style: none;
   }
   
   .castItem {
     margin: 0.5rem 0;
+    padding: 16px;
+    text-align: center;
+    border-radius: 4px;
+    
+  }
+  
+  .castItem img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .castItem strong {
+    font-weight: bold; 
   }
   

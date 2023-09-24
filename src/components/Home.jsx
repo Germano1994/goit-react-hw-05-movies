@@ -26,8 +26,8 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <h2>Найпопулярніші фільми на сьогодні</h2>
       <Link to={`/movies`}>Movies</Link>
+      <h2>Trending today</h2>
       {loading ? (
         <p className={styles.loading}>Loading...</p>
       ) : (

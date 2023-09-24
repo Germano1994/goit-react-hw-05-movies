@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, useParams, Link, Route } from 'react-router-dom';
+import { Routes, useParams, Link, Route, useNavigate } from 'react-router-dom';
 import { fetchTrendingMoviesDetails } from './api';
 import Cast from './Cast';
 import Reviews from './Reviews';
@@ -7,6 +7,7 @@ import styles from './MovieDetails.module.css';
 
 function MovieDetails() {
   const { movieId } = useParams();
+  const navigate = useNavigate();
 
   const [trendingMovies, setTrendingMovies] = useState({});
   const [loading, setLoading] = useState(true);
@@ -31,28 +32,33 @@ function MovieDetails() {
 
   return (
     <div>
-    <div className={styles.movieDetails}>
-      <img src={`https://image.tmdb.org/t/p/w500${trendingMovies.poster_path}`} alt="" />
-      <h2>{trendingMovies.title}</h2>
-      <p>{trendingMovies.overview}</p>
-    </div>
-    <div>
-      <Link to="cast">
-        Cast
-    </Link>
-    <Link to="reviews">
-        Reviews
-    </Link>
-    </div>
-    <Routes>
-                <Route path="cast" element={<Cast />} />
-                <Route path="reviews" element={<Reviews />} />
-            </Routes>
-            
-          
+      <div className={styles.container}>
+        <div className={styles.moviesDetails}>
+          <Link to="/" className={styles.backButton}>Back</Link> {}
+          <img src={`https://image.tmdb.org/t/p/w400${trendingMovies.poster_path}`} alt="" />
+          <div className={styles.details}>
+            <h2>{trendingMovies.title}</h2>
+            <p>Overview: {trendingMovies.overview}</p>
+            <p>User Score: {trendingMovies.vote_average}</p>
+            <p>Genres: {trendingMovies.genres.map(genre => genre.name).join(', ')}</p>
+          </div>
+        </div>
+        <div className={styles.additional}>
+          <h3>Additional Information</h3>
+          <Link to="cast" className={styles.link}>
+            Cast
+          </Link>
+          <Link to="reviews" className={styles.link}>
+            Reviews
+          </Link>
+        </div>
+      </div>
+      <Routes>
+        <Route path="cast" element={<Cast />} />
+        <Route path="reviews" element={<Reviews />} />
+      </Routes>
     </div>
   );
 }
 
 export default MovieDetails;
-

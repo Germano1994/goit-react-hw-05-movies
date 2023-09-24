@@ -1,11 +1,127 @@
+/* MovieDetails.module.css */
+
 .movieDetails {
-    margin: 1rem;
-  }
-  
-  .loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
+  margin: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.moviesDetails {
+  display: flex;
+  flex-wrap: wrap; /* Додано flex-wrap для обгортання елементів на маленьких екранах */
+  align-items: center;
+  position: relative; /* Додано позицію для розміщення кнопки Back */
+}
+
+.backButton,
+.castButton { /* Додано стилі для кнопки Back та Cast */
+  background-color: #0077cc;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.backButton:hover,
+.castButton:hover { /* Додано стилі для наведення миші на кнопки Back та Cast */
+  background-color: #005fbf;
+}
+
+.moviesDetails img {
+  width: 250px;
+  height: auto;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.moviesDetails h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.moviesDetails p {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.moviesDetails strong {
+  font-weight: bold;
+}
+
+.moviesDetails h3 {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.moviesDetails a {
+  font-size: 18px;
+  margin-right: 20px;
+}
+
+.additional {
+  display: flex;
+  flex-direction: column;
+  width: 1200px;
+  align-items: center;
+  margin: 20px;
+  padding: 20px;
+}
+
+.additional a {
+  font-size: 18px;
+  margin: 10px;
+  text-decoration: none;
+  color: #0077cc;
+  transition: color 0.3s;
+}
+
+.additional a:hover {
+  background-color: red;
+  padding: 10px;
+  color: white;
+}
+
+.styledMovieDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px;
+  width: 1200px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.styledMovieDetails a {
+  font-size: 18px;
+  margin: 0 0 10px 0;
+  text-decoration: none;
+  color: #0077cc;
+  transition: color 0.3s;
+}
+
+.styledMovieDetails a:hover {
+  background-color: red;
+  padding: 10px;
+  color: white;
+}

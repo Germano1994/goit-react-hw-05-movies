@@ -30,12 +30,16 @@ function Reviews() {
     <div className={styles.reviews}>
       <h2 className={styles.reviewsHeader}>Огляди</h2>
       <ul className={styles.reviewsList}>
-        {data.results.map((review) => (
-          <li key={review.id} className={styles.reviewItem}>
-            <h3 className={styles.reviewAuthor}>{review.author}</h3>
-            <p className={styles.reviewContent}>{review.content}</p>
-          </li>
-        ))}
+        {data.results.length > 0 ? (
+          data.results.map((review) => (
+            <li key={review.id} className={styles.reviewItem}>
+              <h3 className={styles.reviewAuthor}>{review.author}</h3>
+              <p className={styles.reviewContent}>{review.content}</p>
+            </li>
+          ))
+        ) : (
+          <div>Sorry, we don't have any reviews...</div>
+        )}
       </ul>
     </div>
   );

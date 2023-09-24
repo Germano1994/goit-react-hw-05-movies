@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import React from 'react';
-import styles from './MovieList.module.css';
+import styles from './MovieList.module.css'; 
 
 const getRandomColor = () => {
   const letters = '0123456789ABCDEF';
@@ -19,22 +19,23 @@ export const MoviesList = ({ movies }) => {
   };
 
   const handleMouseLeave = (event) => {
-    event.target.style.color = ''; 
+    event.target.style.color = '';
   };
 
   return (
     <ul className={styles.movieList}>
       {movies.map((movie) => (
         <li key={movie.id} className={styles.movieItem}>
-          <Link
+          {}
+          <NavLink
             to={`/movies/${movie.id}`}
             state={location}
             className={styles.movieLink}
-            onMouseEnter={handleMouseEnter} 
-            onMouseLeave={handleMouseLeave} 
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <strong>{movie.title ? movie.title : movie.name}</strong>
-          </Link>
+          </NavLink>
         </li>
       ))}
     </ul>
