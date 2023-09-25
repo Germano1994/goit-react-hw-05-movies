@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { fetchSearchMovies } from './api';
 import styles from './Movies.module.css';
 
 function Movies() {
-  const [search, setSearch] = useState('');
   const [data, setTrendingMovies] = useState([]);
   const [searched, setSearched] = useState(false);
+  const [search, setSearch] = useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
 
-  const searchMovies = async () => {
+
+  const searchMovies = async (search) => {
     try {
       const movies = await fetchSearchMovies(search);
       setTrendingMovies(movies.results);
@@ -18,9 +22,17 @@ function Movies() {
     }
   };
 
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    searchMovies(queryParams.get("q") || '');
+    setSearch(queryParams.get("q") || '');
+  }, [location.search]);
+
   const handleSearch = (event) => {
     event.preventDefault();
-    searchMovies();
+    searchMovies(event.target[0].value);
+    const newSearch = `?q=${event.target[0].value}`;
+    navigate({ search: newSearch });
   };
 
   return (
@@ -31,8 +43,8 @@ function Movies() {
         <input
           type="text"
           value={search}
-          onChange={(event) => setSearch(event.target.value)}
           placeholder="Search movies"
+          onChange={(e) => setSearch(e.target.value)}
         />
         <button type="submit">Search</button>
       </form>

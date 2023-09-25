@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, useParams, Link, Route } from 'react-router-dom';
+import { Routes, useParams, Link, Route, useNavigate } from 'react-router-dom';
 import { fetchTrendingMoviesDetails } from './api';
 import Cast from './Cast';
 import Reviews from './Reviews';
@@ -7,6 +7,7 @@ import styles from './MovieDetails.module.css';
 
 function MovieDetails() {
   const { movieId } = useParams();
+  const navigate = useNavigate();
 
   const [trendingMovies, setTrendingMovies] = useState({});
   const [loading, setLoading] = useState(true);
@@ -33,7 +34,7 @@ function MovieDetails() {
     <div>
       <div className={styles.container}>
         <div className={styles.moviesDetails}>
-          <Link to="/movies" className={styles.backButton}>Back</Link> {}
+          <Link onClick={()=>navigate(-1)} className={styles.backButton}>Back</Link> {}
           <img src={`https://image.tmdb.org/t/p/w400${trendingMovies.poster_path}`} alt="" />
           <div className={styles.details}>
             <h2>{trendingMovies.title}</h2>
