@@ -9,14 +9,13 @@ function Movies() {
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
-  const queryParams = new URLSearchParams(location.search);
 
 
   const searchMovies = async (search) => {
     try {
       const movies = await fetchSearchMovies(search);
       setTrendingMovies(movies.results);
-      setSearched(true); // Позначаємо, що був виконаний пошук
+      setSearched(true); 
     } catch (error) {
       console.error('Error fetching trending movies:', error);
     }
