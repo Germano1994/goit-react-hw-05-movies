@@ -33,7 +33,7 @@ function MovieDetails() {
     <div>
       <div className={styles.container}>
         <div className={styles.moviesDetails}>
-          <Link to="/" className={styles.backButton}>Back</Link> {}
+          <Link to="/movies" className={styles.backButton}>Back</Link> {}
           <img src={`https://image.tmdb.org/t/p/w400${trendingMovies.poster_path}`} alt="" />
           <div className={styles.details}>
             <h2>{trendingMovies.title}</h2>

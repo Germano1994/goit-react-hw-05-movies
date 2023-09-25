@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchSearchMovies } from './api';
 import styles from './Movies.module.css';
@@ -6,26 +6,22 @@ import styles from './Movies.module.css';
 function Movies() {
   const [search, setSearch] = useState('');
   const [data, setTrendingMovies] = useState([]);
-  const [isLoading, setLoading] = useState(true);
+  const [searched, setSearched] = useState(false);
 
-  useEffect(() => {
-    const searchMovies = async (search) => {
-      try {
-        const movies = await fetchSearchMovies(search);
-        setTrendingMovies(movies.results);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching trending movies:', error);
-      }
-    };
-
-    searchMovies(search);
-  }, [search]);
+  const searchMovies = async () => {
+    try {
+      const movies = await fetchSearchMovies(search);
+      setTrendingMovies(movies.results);
+      setSearched(true); // Позначаємо, що був виконаний пошук
+    } catch (error) {
+      console.error('Error fetching trending movies:', error);
+    }
+  };
 
   const handleSearch = (event) => {
     event.preventDefault();
-    
-  }
+    searchMovies();
+  };
 
   return (
     <div className={styles.moviesContainer}>
@@ -40,8 +36,7 @@ function Movies() {
         />
         <button type="submit">Search</button>
       </form>
-      {isLoading && <p className={styles.loading}>Loading...</p>}
-      {data && (
+      {searched && (
         <ul>
           {data.map((movie) => (
             <li key={movie.id}>
