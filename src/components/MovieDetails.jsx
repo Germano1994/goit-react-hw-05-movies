@@ -30,11 +30,16 @@ function MovieDetails() {
     return <div className={styles.loading}>Loading...</div>;
   }
 
+  const backLink = () => {
+    const linkToBack = localStorage.getItem('q');
+    navigate(linkToBack ? '/movies?q=' + linkToBack : '/movies');
+  }
+
   return (
     <div>
       <div className={styles.container}>
         <div className={styles.moviesDetails}>
-          <Link onClick={()=>navigate(-1)} className={styles.backButton}>Back</Link> {}
+          <button onClick={backLink} className={styles.backButton}>Back</button>
           <img src={`https://image.tmdb.org/t/p/w400${trendingMovies.poster_path}`} alt="" />
           <div className={styles.details}>
             <h2>{trendingMovies.title}</h2>

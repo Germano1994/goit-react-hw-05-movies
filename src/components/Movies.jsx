@@ -10,12 +10,11 @@ function Movies() {
   const navigate = useNavigate();
   const location = useLocation();
 
-
   const searchMovies = async (search) => {
     try {
       const movies = await fetchSearchMovies(search);
       setTrendingMovies(movies.results);
-      setSearched(true); 
+      setSearched(true);
     } catch (error) {
       console.error('Error fetching trending movies:', error);
     }
@@ -32,6 +31,7 @@ function Movies() {
     searchMovies(event.target[0].value);
     const newSearch = `?q=${event.target[0].value}`;
     navigate({ search: newSearch });
+    localStorage.setItem('q', event.target[0].value);
   };
 
   return (
