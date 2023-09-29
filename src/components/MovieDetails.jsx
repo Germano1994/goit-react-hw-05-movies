@@ -7,8 +7,8 @@ import styles from './MovieDetails.module.css';
 
 function MovieDetails() {
   const { movieId } = useParams();
-  const location=useLocation
-  const backLink=useRef(location.state?.from)
+  const location=useLocation();
+  const backLink=useRef(location.state?.from || "/");
 
   const [trendingMovies, setTrendingMovies] = useState({});
   const [loading, setLoading] = useState(true);

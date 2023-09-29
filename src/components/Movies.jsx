@@ -37,7 +37,7 @@ function Movies() {
   return (
     <div className={styles.moviesContainer}>
       <h2>Movie search</h2>
-      <Link to={`/`}>Home</Link>
+      <Link to={`/`} state={{ from: location }}>Home</Link>
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -51,7 +51,8 @@ function Movies() {
         <ul>
           {data.map((movie) => (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`} className={styles.movieLink}>
+              <Link to={`/movies/${movie.id}`} className={styles.movieLink}
+                  state={{ from: location }}>
                 {movie.title}
               </Link>
             </li>
