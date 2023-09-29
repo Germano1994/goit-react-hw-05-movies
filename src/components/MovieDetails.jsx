@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Routes, useParams, Link, Route, useNavigate } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from 'react';
+import { Routes, useParams, Link, Route, useLocation } from 'react-router-dom';
 import { fetchTrendingMoviesDetails } from './api';
 import Cast from './Cast';
 import Reviews from './Reviews';
@@ -7,7 +7,8 @@ import styles from './MovieDetails.module.css';
 
 function MovieDetails() {
   const { movieId } = useParams();
-  const navigate = useNavigate();
+  const location=useLocation
+  const backLink=useRef(location.state?.from)
 
   const [trendingMovies, setTrendingMovies] = useState({});
   const [loading, setLoading] = useState(true);
@@ -30,16 +31,13 @@ function MovieDetails() {
     return <div className={styles.loading}>Loading...</div>;
   }
 
-  const backLink = () => {
-    const linkToBack = localStorage.getItem('q');
-    navigate(linkToBack ? '/movies?q=' + linkToBack : '/movies');
-  }
+
 
   return (
     <div>
       <div className={styles.container}>
         <div className={styles.moviesDetails}>
-          <button onClick={backLink} className={styles.backButton}>Back</button>
+          <Link to={backLink} className={styles.backButton}>Back</Link>
           <img src={`https://image.tmdb.org/t/p/w400${trendingMovies.poster_path}`} alt="" />
           <div className={styles.details}>
             <h2>{trendingMovies.title}</h2>
